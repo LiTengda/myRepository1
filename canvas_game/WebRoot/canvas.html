@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>canvas.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    <canvas id="mycanvas" width="500px" height="500px"></canvas>
+    <button onclick="onstartclick();">开始</button>
+    <script type="text/javascript">
+    	//什么是canvas？
+    	//Html5中canvas标签用于图形绘制，通过javascript脚本来完成
+    	//canvas只是一个图形的容器，我们必须使用程序在容器内画东西。
+    	//canvas里面可以绘制基本的图形，比如，线，矩形，圆（圆弧）
+    	/*
+    	
+    	//绘制逻辑：
+    	var mycanvas=document.getElementById("mycanvas");
+    	//拿到用于绘制的对象
+    	var canvas=mycanvas.getContext("2d");
+    	
+    	//绘制分为两种，一种是填充绘制，另一种是描边绘制
+    	//填充的颜色的设置
+    	
+    	//用HBuilder的同学
+    	//不要去使用canvas.setFillColor("#ff0000");
+    	canvas.fillStyle="#ff0000";
+    	//绘制一个矩形
+    	//前两个参数是一个点的坐标，描述这个矩形的左上角。
+    	//后两个参数描述这个矩形的宽和高。
+    	canvas.fillRect(50,50,100,100);
+    	
+    	//Canvas坐标：
+    	//canvas是一个二维的平面。
+    	//左上角为0,0
+    	//水平为x，垂直为y，右为正方向，下为正方向
+    	
+    	
+    	//绘制一条线
+    	//设置描边绘制的颜色
+    	canvas.strokeStyle="#0000ff";
+    	//把画笔移动到0,0位置
+    	canvas.moveTo(0,0);
+    	//用一条线连接到300,300
+    	canvas.lineTo(300,300);
+    	//绘制
+    	canvas.stroke();
+    	
+    	//canvas你现在理解成蜡笔画画。
+    	//后画覆盖先画的。
+    	
+    	//绘制圆
+    	//开启一个路径
+    	canvas.beginPath();
+    	//前两个参数是圆心
+    	//第三个参数是半径
+    	//第四个参数是开始的角度
+    	//第五个参数是结束的角度
+    	canvas.arc(100,100,80,0,Math.PI*2);
+    	canvas.fill();
+    	
+    	
+    	canvas.fillStyle="#0000ff";
+    	canvas.beginPath();
+    	//前两个参数是圆心
+    	//第三个参数是半径
+    	//第四个参数是开始的角度
+    	//第五个参数是结束的角度
+    	canvas.moveTo(100,100);
+    	canvas.lineTo(180,100);
+    	canvas.arc(100,100,80,Math.PI*0,Math.PI*0.3);
+    	canvas.lineTo(100,100);
+    	canvas.fill();
+    	
+    	canvas.fillStyle="#ffffff";
+    	canvas.beginPath();
+    	canvas.arc(100,100,40,Math.PI*0,Math.PI*2);
+    	canvas.fill();
+    	*/
+    	//画布的平移与旋转
+    	/*
+    	//平移:
+    	canvas.fillStyle="#ff00ff";
+    	canvas.translate(100,100);
+    	canvas.fillRect(0,0,100,100);
+    	*/
+    	/*
+    	//旋转:
+    	canvas.fillStyle="#ff00ff";
+    	//旋转是以0,0为圆心，顺时针方向旋转
+    	canvas.rotate(Math.PI*0.25);
+    	canvas.fillRect(0,0,100,100);
+    	*/
+    	
+    	
+    	//平移+旋转
+    	/*
+    	canvas.translate(100,100);
+    	canvas.rotate(Math.PI*0.25);
+    	canvas.fillStyle="#ff00ff";
+    	canvas.fillRect(0,0,100,100);
+    	*/
+    	//绘制逻辑：
+    	var mycanvas=document.getElementById("mycanvas");
+    	//拿到用于绘制的对象
+    	var canvas=mycanvas.getContext("2d");
+    	//canvas.translate(100,100);
+    	
+    	function onstartclick(){
+    		setInterval("start();", 1);
+    	}
+    	function start(){
+    	
+    		canvas.fillStyle="#ffffff";
+    		canvas.fillRect(-1000,-1000,2000,2000);
+    		
+    		canvas.rotate(Math.PI*0.01);
+    		canvas.fillStyle="#ff00ff";
+    		canvas.fillRect(0,0,100,100);
+    	}
+    	
+    	
+    	//渐变：
+    	//线性渐变
+    	
+   /*  	var grd=canvas.createLinearGradient(0,0,200,200);
+    	grd.addColorStop(0,"red");
+    	grd.addColorStop(1,"#ffff00");
+    	//把渐变的效果交给画布
+    	canvas.fillStyle=grd;
+    	//canvas.fillRect(-1000,-1000,2000,2000);
+    	canvas.beginPath();
+    	canvas.arc(100,100,80,0,2*Math.PI);
+    	canvas.fill(); */
+    	
+    	
+    	//圆形渐变
+    	//createRadialGradient一共有六个参数
+    	//前两个是开始的圆心坐标
+    	//第三个是开始的半径
+    	//接下来两个是结束的圆心坐标
+    	//然后是结束的半径
+    	var grd=canvas.createRadialGradient(80,80,5,100,100,80);
+    	grd.addColorStop(0,"red");
+    	grd.addColorStop(1,"#ffffff");
+    	//把渐变的效果交给画布
+    	canvas.fillStyle=grd;
+    	//canvas.fillRect(-1000,-1000,2000,2000);
+    	canvas.beginPath();
+    	canvas.arc(100,100,80,0,2*Math.PI);
+    	canvas.fillRect(-1000,-1000,2000,2000);
+    	canvas.fill();
+    	
+    </script>
+  </body>
+</html>
